@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View, StatusBar as SB } from "react-native";
+import MoviesContextProvider from "./context/MoviesContext";
+import BottomTabNavigator from "./components/navigation/BottomTabNavigator";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <MoviesContextProvider>
+      <View style={[styles.container, { paddingTop: SB.currentHeight }]}>
+        <StatusBar style="light" />
+        <BottomTabNavigator />
+      </View>
+    </MoviesContextProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#1C1C27",
   },
 });
