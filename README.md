@@ -1,11 +1,24 @@
-# React native movies-app
-  - React context and hooks
+# Movies App
+  - React Native
   - React navigation v6
-  
- <img src="https://user-images.githubusercontent.com/67501111/210242834-483ca5a8-32a6-4616-97d4-cf3701844961.jpg" width='400' height='700' />    &emsp; &emsp;      <img src="https://user-images.githubusercontent.com/67501111/210243361-e0a9523c-b092-4fa5-9ddc-827dadc4fdfa.jpg" width='400' height='700' />
+  - react query
+  - axios
 
-<img src="https://user-images.githubusercontent.com/67501111/210243464-b2e3862a-926c-4dc6-a444-aa0fdb7c1c82.jpg" width='400' height='700' />    &emsp;    &emsp;  <img src="https://user-images.githubusercontent.com/67501111/210243472-58fa5472-688d-434c-af0a-9bdfeb93d6b3.jpg" width='400' height='700' />
+![31](https://user-images.githubusercontent.com/67501111/231589842-cb79e602-5af2-4600-b675-b222b4500884.PNG)  
 
-<img src="https://user-images.githubusercontent.com/67501111/210243582-ec94add4-04bf-49a2-b6e2-cbb6fd32044b.jpg" width='400' height='700' />
-<img src="https://user-images.githubusercontent.com/67501111/210243600-d49c140e-c29a-4bbf-8e85-01a4beee0307.jpg" width='400' height='700' />
-<img src="https://user-images.githubusercontent.com/67501111/210243620-ab3c2949-673d-4257-9904-1cea739b9799.jpg" width='400' height='700' />
+![32](https://user-images.githubusercontent.com/67501111/231589854-0577861a-a161-494e-87c0-45a5cbfb8e55.PNG)  
+
+![33](https://user-images.githubusercontent.com/67501111/231589863-0f632a30-388d-49ef-8bec-c4f20de28586.PNG)  
+
+![38](https://user-images.githubusercontent.com/67501111/231589905-48a5a039-74b0-4660-81ed-dfa50ea455a8.PNG)  
+
+![39](https://user-images.githubusercontent.com/67501111/231589913-84e2fdfb-4105-4930-a801-f91139d1156f.PNG)  
+
+![34](https://user-images.githubusercontent.com/67501111/231589928-440ae6d9-34c8-4033-b21c-3871eb357e98.PNG)  
+
+![35](https://user-images.githubusercontent.com/67501111/231589931-642aa965-6ce7-40a8-bb3a-1140ffa56e94.PNG)  
+
+![36](https://user-images.githubusercontent.com/67501111/231589937-a97243b2-674a-40e5-9771-6e733e86e79e.PNG)  
+
+![37](https://user-images.githubusercontent.com/67501111/231589942-f2314e79-2ac7-489f-bb7e-aefc5504feaa.PNG)  
+
