@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Image,
   ImageBackground,
@@ -7,39 +7,28 @@ import {
   Text,
   View,
 } from "react-native";
-import { MoviesContext } from "../context/MoviesContext";
 import { LinearGradient } from "expo-linear-gradient";
 import DotIcon from "../assets/dot.png";
 import Star from "../assets/star.png";
 import Movies from "../components/Home/Movies";
 import Cast from "../components/Movie/Cast";
+import { useMovieDetails } from "../services";
 
 const Movie = ({ route, navigation }) => {
-  const {
-    getMovieDetails,
-    movieDetails,
-    getCredits,
-    getRecommendedMovies,
-    recommendedMovies,
-    getSimilarMovies,
-    similarMovies,
-  } = useContext(MoviesContext);
   const { id } = route.params;
 
+  const { data } = useMovieDetails(id);
+
   useEffect(() => {
-    getMovieDetails(id);
-    getCredits(id);
-    getRecommendedMovies(id);
-    getSimilarMovies(id);
     navigation.setOptions({ title: "" });
-  }, [id]);
+  }, []);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
       <View>
         <ImageBackground
           source={{
-            uri: `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`,
+            uri: `https://image.tmdb.org/t/p/w500/${data?.data.poster_path}`,
           }}
           blurRadius={20}
           imageStyle={{ resizeMode: "stretch" }}
@@ -49,25 +38,24 @@ const Movie = ({ route, navigation }) => {
               <Image
                 style={styles.image}
                 source={{
-                  uri: `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`,
+                  uri: `https://image.tmdb.org/t/p/w500/${data?.data.poster_path}`,
                 }}
               />
             </View>
           </LinearGradient>
         </ImageBackground>
-        <Text style={styles.movieTitle}>{movieDetails.title}</Text>
+        <Text style={styles.movieTitle}>{data?.data.title}</Text>
         <View style={styles.movieInfo}>
           <Text style={styles.infoText}>
-            {movieDetails.release_date && movieDetails.release_date.slice(0, 4)}
+            {data?.data.release_date && data?.data.release_date.slice(0, 4)}
           </Text>
           <Image source={DotIcon} style={{ width: 8, height: 8 }} />
           <Text style={styles.infoText}>
-            {movieDetails.genres && movieDetails.genres[0].name}
+            {data?.data.genres && data?.data.genres[0].name}
           </Text>
           <Image source={DotIcon} style={{ width: 8, height: 8 }} />
           <Text style={styles.infoText}>
-            {Math.floor(movieDetails.runtime / 60)}h {movieDetails.runtime % 60}
-            m
+            {Math.floor(data?.data.runtime / 60)}h {data?.data.runtime % 60}m
           </Text>
         </View>
         <View style={styles.ratingWrapper}>
@@ -76,22 +64,22 @@ const Movie = ({ route, navigation }) => {
             style={{ width: 15, height: 15, marginRight: 5 }}
           />
           <Text style={styles.rateNumber}>
-            {Math.floor(movieDetails.vote_average * 10) / 10} (
-            {movieDetails.vote_count} reviews)
+            {Math.floor(data?.data.vote_average * 10) / 10} (
+            {data?.data.vote_count} reviews)
           </Text>
         </View>
-        <Text style={styles.overview}>{movieDetails.overview}</Text>
+        <Text style={styles.overview}>{data?.data.overview}</Text>
 
-        <Cast navigation={navigation} />
+        <Cast credits={data?.data.credits.cast} navigation={navigation} />
 
         <Movies
           headerTitle={"Recommendations"}
-          movies={recommendedMovies}
+          movies={data?.data.recommendations.results}
           navigation={navigation}
         />
         <Movies
           headerTitle={"Similar Movies"}
-          movies={similarMovies}
+          movies={data?.data.similar.results}
           navigation={navigation}
         />
       </View>

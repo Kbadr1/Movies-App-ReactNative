@@ -1,16 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, StatusBar as SB } from "react-native";
-import MoviesContextProvider from "./context/MoviesContext";
 import BottomTabNavigator from "./components/navigation/BottomTabNavigator";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <MoviesContextProvider>
+    <QueryClientProvider client={queryClient}>
       <View style={[styles.container, { paddingTop: SB.currentHeight }]}>
         <StatusBar style="light" />
         <BottomTabNavigator />
       </View>
-    </MoviesContextProvider>
+    </QueryClientProvider>
   );
 }
 

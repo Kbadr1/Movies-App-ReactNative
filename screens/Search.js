@@ -2,14 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { FlatList, Text, View, StyleSheet, TextInput } from "react-native";
 import { MoviesContext } from "../context/MoviesContext";
 import Movie from "../components/Search/Movie";
+import { useSearchMovies } from "../services";
 
 const Search = () => {
   const [query, setQuery] = useState("");
 
-  const { getMoviesByKeyword, mvoiesByKeyword } = useContext(MoviesContext);
-  useEffect(() => {
-    query && getMoviesByKeyword(query);
-  }, [query]);
+  // const { getMoviesByKeyword, mvoiesByKeyword } = useContext(MoviesContext);
+  const { data } = useSearchMovies(query);
+  // useEffect(() => {
+  //   query && getMoviesByKeyword(query);
+  // }, [query]);
 
   return (
     <View style={styles.container}>
@@ -20,16 +22,16 @@ const Search = () => {
         value={query}
         onChangeText={(text) => setQuery(text)}
       />
-      {query && mvoiesByKeyword.length ? (
+      {query && data?.data.results.length ? (
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={mvoiesByKeyword}
+          data={data?.data.results}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <Movie movie={item} />}
         />
       ) : (
         query &&
-        !mvoiesByKeyword.length && (
+        !data?.data.results.length && (
           <Text style={styles.message}>
             Sorry but no movies matched your terms.
           </Text>

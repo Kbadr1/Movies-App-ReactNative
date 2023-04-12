@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StyleSheet, FlatList } from "react-native";
 import Movie from "../components/Trending/Movie";
-import { MoviesContext } from "../context/MoviesContext";
+import { useTrending } from "../services";
 
 const Trending = () => {
-  const { trendingMovies } = useContext(MoviesContext);
+  const { data } = useTrending();
 
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
       style={styles.container}
-      data={trendingMovies}
+      data={data?.data.results}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => <Movie movie={item} />}
     />

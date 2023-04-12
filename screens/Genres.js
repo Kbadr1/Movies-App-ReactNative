@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
-import { MoviesContext } from "../context/MoviesContext";
+import React from "react";
+import { FlatList, Pressable, StyleSheet, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useGenres } from "../services";
 
 const Genres = () => {
-  const { categories } = useContext(MoviesContext);
   const navigation = useNavigation();
+
+  const { data } = useGenres();
 
   return (
     <FlatList
       style={styles.container}
-      data={categories}
+      data={data?.data.genres}
       key={(category) => category.id}
       renderItem={({ item }) => {
         return (

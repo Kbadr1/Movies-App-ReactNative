@@ -43,6 +43,7 @@ const BottomTabNavigator = () => {
             fontSize: 12,
             paddingBottom: 5,
           },
+          tabBarHideOnKeyboard: true,
         })}
       >
         <Tab.Screen

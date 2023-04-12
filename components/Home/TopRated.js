@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { MoviesContext } from "../../context/MoviesContext";
+import React from "react";
 import Movies from "./Movies";
+import { useCategory } from "../../services";
 
 const TopRated = () => {
-  const { topRatedMovies } = useContext(MoviesContext);
+  const { data } = useCategory("top_rated");
 
-  return <Movies headerTitle={"Top Rated"} movies={topRatedMovies} />;
+  return <Movies headerTitle={"Top Rated"} movies={data?.data.results} />;
 };
 
 export default TopRated;

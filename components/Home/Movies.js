@@ -30,7 +30,7 @@ const Movies = ({ headerTitle, movies }) => {
         </Text>
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {movies.slice(0, 9).map((movie) => {
+        {movies?.slice(0, 9).map((movie) => {
           return (
             <Pressable
               key={movie.id}
@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   link: {
-    color: "#F27706",
+    // color: "#F27706",
+    color: "#8E8F96",
     fontSize: 12,
     marginBottom: 20,
   },

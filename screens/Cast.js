@@ -1,15 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Text, View, Image, FlatList, StyleSheet } from "react-native";
-import { MoviesContext } from "../context/MoviesContext";
 import UserIcon from "../assets/user.png";
+import { useMovieDetails } from "../services";
 
-const Cast = () => {
-  const { cast } = useContext(MoviesContext);
+const Cast = ({ route }) => {
+  const { id } = route.params;
+  const { data } = useMovieDetails(id);
+
   return (
     <View style={styles.container}>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={cast}
+        data={data?.data.credits.cast}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
           return (

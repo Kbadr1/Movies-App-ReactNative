@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
-import { MoviesContext } from "../../context/MoviesContext";
 import { useNavigation } from "@react-navigation/native";
+import { useGenres } from "../../services";
 
 const Categories = () => {
-  const { categories } = useContext(MoviesContext);
   const navigation = useNavigation();
+
+  const { data } = useGenres();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -15,7 +17,7 @@ const Categories = () => {
         </Text>
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {categories.slice(0, 9).map((category) => {
+        {data?.data.genres.slice(0, 9).map((category) => {
           return (
             <Pressable
               key={category.id}
@@ -52,7 +54,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   link: {
-    color: "#F27706",
+    // color: "#F27706",
+    color: "#8E8F96",
     fontSize: 12,
     marginBottom: 20,
   },

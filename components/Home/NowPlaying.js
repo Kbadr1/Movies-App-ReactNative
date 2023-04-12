@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
-import { MoviesContext } from "../../context/MoviesContext";
+import React from "react";
 import Movies from "./Movies";
+import { useCategory } from "../../services";
 
 const NowPlaying = () => {
-  const { nowPlayingMovies } = useContext(MoviesContext);
-  return <Movies headerTitle={"In Theaters"} movies={nowPlayingMovies} />;
+  const { data } = useCategory("now_playing");
+
+  return <Movies headerTitle={"In Theaters"} movies={data?.data.results} />;
 };
 
 export default NowPlaying;

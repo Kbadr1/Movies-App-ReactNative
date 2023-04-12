@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import {
   ScrollView,
   View,
@@ -8,22 +8,24 @@ import {
   Pressable,
 } from "react-native";
 import UserIcon from "../../assets/user.png";
-import { MoviesContext } from "../../context/MoviesContext";
 
-const Cast = ({ navigation }) => {
-  const { cast } = useContext(MoviesContext);
-
+const Cast = ({ credits, navigation }) => {
   return (
     <Pressable
       style={styles.actorContainer}
-      onPress={() => navigation.navigate("Cast")}
+      // onPress={() => navigation.navigate("Cast", { id })}
     >
       <View style={styles.castHeader}>
         <Text style={styles.castTitle}>Cast</Text>
-        <Text style={styles.castLink}>View all</Text>
+        <Text
+          style={styles.castLink}
+          onPress={() => navigation.navigate("Cast", { id })}
+        >
+          View all
+        </Text>
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {cast.slice(0, 12).map((actor) => {
+        {credits?.slice(0, 12).map((actor) => {
           return (
             <View key={actor.id} style={styles.actor}>
               <Image
@@ -94,7 +96,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   castLink: {
-    color: "#F27706",
+    // color: "#F27706",
+    color: "#8E8F96",
     fontSize: 12,
     marginBottom: 20,
   },

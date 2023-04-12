@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -6,14 +6,14 @@ import {
   ScrollView,
   Image,
   Pressable,
-  FlatList,
 } from "react-native";
-import { MoviesContext } from "../../context/MoviesContext";
 import { useNavigation } from "@react-navigation/native";
+import { useCategory } from "../../services";
 
 const Upcoming = () => {
   const navigation = useNavigation();
-  const { upcomingMovies } = useContext(MoviesContext);
+
+  const { data } = useCategory("upcoming");
 
   return (
     <View style={styles.container}>
@@ -23,7 +23,7 @@ const Upcoming = () => {
           style={styles.link}
           onPress={() =>
             navigation.navigate("MoviesList", {
-              movies: upcomingMovies,
+              movies: data?.data.results,
               title: "Coming soon",
             })
           }
@@ -32,7 +32,7 @@ const Upcoming = () => {
         </Text>
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {upcomingMovies.slice(0, 9).map((movie) => {
+        {data?.data.results.slice(0, 9).map((movie) => {
           return (
             <Pressable
               key={movie.id}
@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   link: {
-    color: "#F27706",
+    // color: "#F27706",
+    color: "#8E8F96",
     fontSize: 12,
     marginBottom: 20,
   },

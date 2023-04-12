@@ -1,24 +1,24 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, FlatList } from "react-native";
-import { MoviesContext } from "../context/MoviesContext";
 import Movie from "../components/Trending/Movie";
 import { useNavigation } from "@react-navigation/native";
+import { useCategoryMovies } from "../services";
 
 const Category = ({ route }) => {
-  const { getMoviesByCategory, moviesByCategory } = useContext(MoviesContext);
   const { id, name } = route.params;
   const navigation = useNavigation();
 
+  const { data } = useCategoryMovies(id);
+
   useEffect(() => {
     navigation.setOptions({ title: `${name}` });
-    getMoviesByCategory(id);
   }, [id]);
 
   return (
     <FlatList
       style={styles.container}
       keyExtractor={(item) => item.id}
-      data={moviesByCategory}
+      data={data?.data.results}
       renderItem={({ item }) => <Movie movie={item} />}
     />
   );
