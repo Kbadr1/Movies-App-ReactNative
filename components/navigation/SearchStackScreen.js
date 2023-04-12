@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Search from "../../screens/Search";
 import Movie from "../../screens/Movie";
+import Cast from "../../screens/Cast";
 
 const SearchStack = createNativeStackNavigator();
 
@@ -21,6 +22,16 @@ const SearchStackScreen = () => {
         options={{
           headerTransparent: true,
           headerBackVisible: false,
+        }}
+      />
+      <SearchStack.Screen
+        name="Cast"
+        component={Cast}
+        options={{
+          headerStyle: {
+            backgroundColor: "#282838",
+          },
+          headerTintColor: "#CAC8D2",
         }}
       />
     </SearchStack.Navigator>

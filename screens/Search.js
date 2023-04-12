@@ -1,17 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FlatList, Text, View, StyleSheet, TextInput } from "react-native";
-import { MoviesContext } from "../context/MoviesContext";
 import Movie from "../components/Search/Movie";
 import { useSearchMovies } from "../services";
 
 const Search = () => {
   const [query, setQuery] = useState("");
 
-  // const { getMoviesByKeyword, mvoiesByKeyword } = useContext(MoviesContext);
   const { data } = useSearchMovies(query);
-  // useEffect(() => {
-  //   query && getMoviesByKeyword(query);
-  // }, [query]);
 
   return (
     <View style={styles.container}>
@@ -46,7 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#1C1C27",
     flex: 1,
     paddingHorizontal: 10,
-    paddingTop: 10,
+    paddingTop: 60,
   },
   searchInput: {
     borderRadius: 10,

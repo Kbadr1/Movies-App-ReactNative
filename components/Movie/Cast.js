@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import UserIcon from "../../assets/user.png";
 
-const Cast = ({ credits, navigation }) => {
+const Cast = ({ credits, navigation, id }) => {
   return (
     <Pressable
       style={styles.actorContainer}

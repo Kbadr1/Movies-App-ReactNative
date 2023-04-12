@@ -49,39 +49,59 @@ const Movie = ({ route, navigation }) => {
           <Text style={styles.infoText}>
             {data?.data.release_date && data?.data.release_date.slice(0, 4)}
           </Text>
-          <Image source={DotIcon} style={{ width: 8, height: 8 }} />
+          {data?.data.release_date && (
+            <Image source={DotIcon} style={{ width: 8, height: 8 }} />
+          )}
+
           <Text style={styles.infoText}>
             {data?.data.genres && data?.data.genres[0].name}
           </Text>
-          <Image source={DotIcon} style={{ width: 8, height: 8 }} />
-          <Text style={styles.infoText}>
-            {Math.floor(data?.data.runtime / 60)}h {data?.data.runtime % 60}m
-          </Text>
+          {data?.data.genres && (
+            <Image source={DotIcon} style={{ width: 8, height: 8 }} />
+          )}
+
+          {data?.data.runtime && (
+            <Text style={styles.infoText}>
+              {Math.floor(data?.data.runtime / 60)}h {data?.data.runtime % 60}m
+            </Text>
+          )}
         </View>
-        <View style={styles.ratingWrapper}>
-          <Image
-            source={Star}
-            style={{ width: 15, height: 15, marginRight: 5 }}
-          />
-          <Text style={styles.rateNumber}>
-            {Math.floor(data?.data.vote_average * 10) / 10} (
-            {data?.data.vote_count} reviews)
-          </Text>
-        </View>
+        {data?.data.vote_average && (
+          <View style={styles.ratingWrapper}>
+            <Image
+              source={Star}
+              style={{ width: 15, height: 15, marginRight: 5 }}
+            />
+            <Text style={styles.rateNumber}>
+              {Math.floor(data?.data.vote_average * 10) / 10} (
+              {data?.data.vote_count} reviews)
+            </Text>
+          </View>
+        )}
         <Text style={styles.overview}>{data?.data.overview}</Text>
 
-        <Cast credits={data?.data.credits.cast} navigation={navigation} />
+        {data?.data.credits.cast && (
+          <Cast
+            credits={data?.data.credits.cast}
+            navigation={navigation}
+            id={id}
+          />
+        )}
 
-        <Movies
-          headerTitle={"Recommendations"}
-          movies={data?.data.recommendations.results}
-          navigation={navigation}
-        />
-        <Movies
-          headerTitle={"Similar Movies"}
-          movies={data?.data.similar.results}
-          navigation={navigation}
-        />
+        {data?.data.recommendations.results && (
+          <Movies
+            headerTitle={"Recommendations"}
+            movies={data?.data.recommendations.results}
+            navigation={navigation}
+          />
+        )}
+        {data?.data.similar.results && (
+          <Movies
+            headerTitle={"Similar Movies"}
+            movies={data?.data.similar.results}
+            navigation={navigation}
+          />
+        )}
       </View>
     </ScrollView>
   );
@@ -96,7 +116,7 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 40,
     height: 500,
-    marginTop: 20,
+    marginTop: 40,
   },
   image: {
     borderRadius: 30,

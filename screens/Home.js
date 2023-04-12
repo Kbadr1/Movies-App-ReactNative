@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   home: {
     backgroundColor: "#1C1C27",
     flex: 1,
+    paddingTop: 30,
   },
 });
 
